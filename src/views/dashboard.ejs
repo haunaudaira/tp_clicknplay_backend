@@ -1,13 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click and Play</title>
+    <title>Panel Admin - Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .navbar { background: #333; color: white; padding: 15px; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
+        .container { max-width: 800px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .botonListado { margin: 10px; margin-top: 25px; display: flex; justify-content: flex-end; padding: 10px; }
+        .botonListado a {color: black; text-decoration: none;}
+    </style>
 </head>
 <body>
-    <h1><%= titulo %></h1>
-    <p>Bienvenido a Click and Play.</p>
-    
+
+    <%- include('./partials/navegacion')%> <!-- llamado al navegador -->
+
+    <button class="botonListado" ><a href="/admin/ventas/excel">Listado de Ventas</a></button>
+
+    <div class="container">
+        <h1>Panel de Control</h1>
+        <p> Para modificar algun producto, ya sea que buscas editar, deshabilitar o actualizar, haz clic en el botón "Editar" correspondiente al renglón.</p>
+    </div>
+
+    <div class="container">
+    <h1>Inventario</h1>
+
+    <% if (typeof mensajeError !== 'undefined') { %>
+        <p style="color: red; font-weight: bold;"><%= mensajeError %></p>
+    <% } %>
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Genero</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (productos.length > 0) { %>
+                
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <td><%= producto.id %></td>
+                        <td>
+                            <img src="<%= producto.imagen || producto.rutaImg %>" alt="" width="50">
+                        </td>
+                        <td><%= producto.nombre %></td>
+                        <td><%= producto.genero || producto.tipo %></td>
+                        <td>$<%= producto.precio %></td>
+                        <td>
+                            <%= producto.estado ? 'Activo' : 'Inactivo' %>
+                        </td>
+                        <td>
+                            <a href="/admin/productos/modificar/<%= producto.id %>">
+                                <button type="button">Editar</button>
+                            </a>
+                            <!-- <a href="/admin/productos/modificar/<%= producto.id %>">
+                                <button type="button"><%= producto.estado ? 'Dar de Baja' : 'Reactivar' %></button>
+                            </a> -->
+                        </td>
+                    </tr>
+                <% }) %>
+
+            <% } else { %>
+                <tr>
+                    <td colspan="7" style="text-align: center;">No hay productos cargados en el sistema.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

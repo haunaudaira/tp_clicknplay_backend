@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <h1>BACKOFFICE</h1>
+
+    <div class="container-login">
+        <form action="/admin/login" method="POST" class="form-group"> 
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="mensaje-error" style="color: rgb(255, 217, 0); margin-bottom: 10px; font-size: 22px; word-spacing: 5px;">
+                    <%= error %>
+                </div>
+            <% } %>
+            <div>
+                <label for="email">Correo Electronico</label>
+                <input type="text" id="email" name="email" required>
+
+                <label for="password">Contrasena</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="botonera">
+                <button class="btn-autocompletar" type="button"> Autocompletar </button>
+                <button class="btn-ingresar" type="submit"> Ingresar </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const btnAutocompletar = document.querySelector('.btn-autocompletar');
+        const inputEmail = document.querySelector('#email');
+        const inputPassword = document.querySelector('#password');
+
+        btnAutocompletar?.addEventListener('click', e => {
+            e.preventDefault();
+            inputEmail.value = 'admin@gmail.com';
+            inputPassword.value = 'Pass.123';
+        });
+    </script>
+    
+</body>
+</html>
+
