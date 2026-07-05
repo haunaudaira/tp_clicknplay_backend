@@ -8,12 +8,12 @@ const controladorDashboard = {
     mostrarDashboard: async (req, res) => {
         try {
         // Obtenemos los productos de la base de datos
-        const [productos] = await ProductosModelo.getAll();
+        const productos = await ProductosModelo.getAll();
 
         // Renderizamos la vista pasándole AMBAS cosas: el usuario y los productos
         res.render('dashboard', { 
             usuario: req.session.usuario,
-            productos: productos 
+            productos 
         });
         } catch (error) {
             console.error("Error al cargar el dashboard:", error);

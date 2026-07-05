@@ -6,6 +6,7 @@ import controladorProductos from "../controllers/productoController.js"
 import uploadMiddleware from "../middlewares/uploadMiddleware.js";
 import { incioSesion, cerrarSesion } from "../controllers/usuarioController.js"
 import { reqAutorizacion } from "../middlewares/authMiddleware.js";
+import ventasRoutes from './ventasRoutes.js';
 
 const router = Router(); 
 
@@ -19,6 +20,7 @@ router.get('/dashboard', reqAutorizacion, controladorDashboard.mostrarDashboard)
 router.get('/productos/nuevo', reqAutorizacion, controladorProductos.formularioAltaProductos);
 router.get('/productos/modificar/:id', reqAutorizacion, ProductoMiddleware.validarId, controladorProductos.modificarDatos);
 router.get('/productos/:id', reqAutorizacion, ProductoMiddleware.validarId, controladorProductos.buscarPorId);
+router.use('/ventas', ventasRoutes);
 router.post('/productos/modificar/:id', reqAutorizacion, ProductoMiddleware.validarId, uploadMiddleware.single('imagen'), ProductoMiddleware.validarDatosProducto, controladorProductos.procesarEdicion);
 router.post('/productos/:id/estado', reqAutorizacion, ProductoMiddleware.validarId, controladorProductos.cambiarEstadoProducto);
 router.post('/productos/nuevo', reqAutorizacion, uploadMiddleware.single('imagen'), ProductoMiddleware.validarDatosProducto, controladorProductos.procesoDatos);

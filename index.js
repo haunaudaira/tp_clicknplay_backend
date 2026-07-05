@@ -1,4 +1,5 @@
 import express from "express";
+import dotenv from "dotenv"
 import session from "express-session";
 import environments from "./src/api/config/environment.js";
 import cors from "cors";
@@ -22,7 +23,7 @@ app.use(session({ secret: environments.database.secret, // clave del .env
     resave: false, // evita guardar la sesion si no hay cambios
     saveUninitialized: false,  //no guarda sesiones vacias
     cookie: {
-        maxAge: 1000 * 60 * 5 // configuramos que la sesion se cierre luego de 5mins (300000 ms)
+        maxAge: 1000 * 60 * 60 // configuramos que la sesion se cierre luego de 1 hora 
     }
 }));
 

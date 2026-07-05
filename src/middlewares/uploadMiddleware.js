@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);// path.dirname se queda solo con la 
 // esto reemplaza a __dirname, que no existe por defecto en esmodules
 
 
-const uploadDir = path.join(__dirname, '..', 'public', 'uploads'); // armamos la ruta a la carpeta destino subimos un nivel desde middlewares y entramos a public/uploads
+const uploadDir = path.resolve(__dirname, '..', '..', 'public', 'uploads'); // guardamos en la carpeta pública que sirve Express
 if (!fs.existsSync(uploadDir)) {   // existsSync revisa si esa carpeta ya existe fisicamente en el disco
   fs.mkdirSync(uploadDir, { recursive: true });
 }
