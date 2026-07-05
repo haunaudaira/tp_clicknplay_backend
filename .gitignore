@@ -53,8 +53,3 @@ dump/
 ._*
 Thumbs.db
 ehthumbs.db
-
-# Ignorar los archivos subidos dinámicamente
-public/uploads/*
-!public/uploads/.gitkeep
-
