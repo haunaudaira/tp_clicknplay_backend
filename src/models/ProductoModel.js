@@ -17,10 +17,10 @@ const ProductosModelo = {
         return result.affectedRows > 0;
     },
 
-    crear: async (nombre, imagen, genero, precio) => {
-        const query = 'INSERT INTO productos (nombre, imagen, genero, precio, estado) VALUES (?, ?, ?, ?, 1)';
+    crear: async (nombre, imagen, genero, categoria, precio) => {
+        const query = 'INSERT INTO productos (nombre, imagen, genero, categoria, precio, estado) VALUES (?, ?, ?, ?, ?, 1)';
 
-        const [resultado] = await db.execute(query, [nombre, imagen, genero, precio]);
+        const [resultado] = await db.execute(query, [nombre, imagen, genero, categoria, precio]);
         // return resultado.insertId;
     },
 
@@ -31,16 +31,16 @@ const ProductosModelo = {
         return rows;
     },
 
-    modificar: async (id, nombre, precio, genero, imagen) => {
+    modificar: async (id, nombre, precio, genero, categoria, imagen) => {
         let query;
         let params;
 
         if (imagen) {
-            query = 'UPDATE productos SET nombre = ?, precio = ?, genero = ?, imagen = ? WHERE id = ?';
-            params = [nombre, precio, genero, imagen, id];
+            query = 'UPDATE productos SET nombre = ?, precio = ?, genero = ?, categoria = ?, imagen = ? WHERE id = ?';
+            params = [nombre, precio, genero, categoria, imagen, id];
         } else {
-            query = 'UPDATE productos SET nombre = ?, precio = ?, genero = ? WHERE id = ?';
-            params = [nombre, precio, genero, id];
+            query = 'UPDATE productos SET nombre = ?, precio = ?, genero = ?, categoria = ? WHERE id = ?';
+            params = [nombre, precio, genero, categoria, id];
         }
 
         const [resultado] = await db.execute(query, params);

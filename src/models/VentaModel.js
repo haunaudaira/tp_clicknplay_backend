@@ -19,6 +19,21 @@ const VentaModelo = {
         const [ventas] = await db.execute(query);
         return ventas;
     }
+    ,
+    crearVenta: async ({ nombre_usuario = null, precio_total = 0, productos = [] }) => {
+        // Insertar la venta y luego sus productos relacionados
+        const insertVentaQuery = `INSERT INTO ventas (fecha, nombre_usuario, precio_total) VALUES (NOW(), ?, ?)`;
+        const [result] = await db.execute(insertVentaQuery, [nombre_usuario, precio_total]);
+        const idVenta = result.insertId;
+
+        if (productos && productos.length) {
+            const insertProductoQuery = `INSERT INTO ventas_productos (id_venta, id_producto, cantidad) VALUES ?`;
+            const valores = productos.map(p => [idVenta, p.id_producto || p.id || null, p.cantidad || 0]);
+            await db.query(insertProductoQuery, [valores]);
+        }
+
+        return idVenta;
+    }
 };
 
 export default VentaModelo;
