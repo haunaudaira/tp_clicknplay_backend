@@ -8,10 +8,10 @@ const controladorProductos = {
 
     procesoDatos: async (req, res) => {
         try {
-            const {nombre, genero, precio} = req.body; 
+            const {nombre, genero, categoria, precio} = req.body; 
             const rutaImg = req.file ? `/uploads/${req.file.filename}` : null; // atraves de este req se accede al nombre del archivo para guardarlo en la bd
 
-            await ProductosModelo.crear(nombre, rutaImg, genero, precio);
+            await ProductosModelo.crear(nombre, rutaImg, genero, categoria, precio);
 
             res.status(201).json({ success: true, message: 'Producto creado correctamente' });
             console.log(req.body);
@@ -83,7 +83,7 @@ const controladorProductos = {
     procesarEdicion: async (req, res) => {
         try {
             const { id } = req.params;
-            const { nombre, precio, genero, } = req.body;
+            const { nombre, precio, genero, categoria } = req.body;
 
             const productoActual = await ProductosModelo.buscar(id);
             const productoGuardado = productoActual && productoActual[0] ? productoActual[0] : {};
@@ -94,6 +94,7 @@ const controladorProductos = {
                 nombre,
                 precio,
                 genero,
+                categoria,
                 rutaImagen
             );
 
