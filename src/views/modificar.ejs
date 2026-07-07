@@ -17,6 +17,7 @@
         button:hover { background: #218838; }
         #mensaje { margin-top: 15px; text-align: center; font-weight: bold; }
     </style>
+    <link rel="stylesheet" href="/css/modales.css">
 </head>
 <body>
 
@@ -25,7 +26,7 @@
     <div class="container">
         <h2> Modificar Producto </h2>
         
-        <form id="formularioProducto" action="/admin/productos/modificar/<%= producto.id %>" method="POST" enctype="multipart/form-data">
+        <form id="formularioProducto" action="/productos/modificar/<%= producto.id %>" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="nombre">Nombre del Producto:</label>
@@ -77,12 +78,23 @@
             <div id="mensaje"></div>
         </form>
 
-        <form id="formEliminarProducto" action="/admin/productos/<%= producto.id %>/estado" method="POST">
+        <form id="formEliminarProducto" action="/productos/<%= producto.id %>/estado" method="POST">
             <input type="hidden" name="estado" value="0">
             <button type="button" class="btn-estado" data-id="<%= producto.id %>" data-estado="<%= producto.estado ? 0 : 1 %>"> <%= producto.estado ? 'Dar de Baja' : 'Reactivar' %></button>
         </form>
     </div>
+    
+    <!-- modal para confirmar cambios de estado -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+        <div class="modal">
+            <p id="modal-text" class="modal-text"></p>
+            <div class="modal-actions">
+                <button id="modal-cancel" type="button" class="btn-cancel">Cancelar</button>
+                <button id="modal-confirm" type="button" class="btn-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
-     <script src="/js/modificar.js"></script>
+    <script src="/js/modificar.js"></script>
 </body>
 </html>

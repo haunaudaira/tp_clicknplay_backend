@@ -4,6 +4,8 @@ import session from "express-session";
 import environments from "./src/api/config/environment.js";
 import cors from "cors";
 import adminRoutes from "./src/routes/adminRoutes.js"
+import productosRoutes from "./src/routes/productosRoutes.js"
+import ventasRoutes from "./src/routes/ventasRoutes.js"
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -27,7 +29,6 @@ app.use(session({ secret: environments.database.secret, // clave del .env
     }
 }));
 
-
 // MIDDLEWARES globales
 app.use(cors()); // permite interacciones cruzadas
 app.use(express.urlencoded({ extended: true })); // permite lectura de datos de forms
@@ -35,6 +36,8 @@ app.use(express.json()); // interaccion de api con json
 
 // RUTAS
 app.use("/admin/", adminRoutes);
+app.use("/", productosRoutes);
+app.use("/api/ventas", ventasRoutes);
 
 app.listen(PORT, () => {
     console.log('servidor corriendo en el puerto: ', PORT);
