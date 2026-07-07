@@ -21,7 +21,7 @@ app.set("view engine", "ejs"); //CONFIGURACION DE EJS - similar a las lineas 10 
 app.set("views", path.join(__dirname, "src/views")); // le indicamos a donde ir a buscar las vista
 app.use(express.static(path.join(__dirname, "public"))); // 
 
-app.use(session({ secret: environments.database.secret, // clave del .env
+app.use(session({ secret: environments.database.secret, // clave del .env firma las cookies para evitar 
     resave: false, // evita guardar la sesion si no hay cambios
     saveUninitialized: false,  //no guarda sesiones vacias
     cookie: {

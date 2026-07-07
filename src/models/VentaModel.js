@@ -1,4 +1,4 @@
-import db from '../api/database/db.js'; // Ajusta la ruta a tu conexión de base de datos
+import db from '../api/database/db.js'; 
 
 const VentaModelo = {
     obtenerVentasParaExcel: async () => {

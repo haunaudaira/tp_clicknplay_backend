@@ -3,7 +3,7 @@ import controladorVentas from '../controllers/ventasController.js';
 
 const router = Router();
 
-// Ruta pública para registrar ventas desde el frontend
+// ruta publica para registrar ventas desde el front
 router.post('/nueva', controladorVentas.registrarVenta);
 
 

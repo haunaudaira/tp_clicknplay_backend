@@ -1,7 +1,7 @@
 import multer from 'multer'; // libreria para manejar archivos que llegan en formularios de tipo multipart/form-data
 import path from 'path'; // modulo nativo de node para armar y manejar rutas de archivos de forma segura entre sistemas operativos
 import fs from 'fs'; // file system, modulo nativo de node para leer escribir y verificar archivos y carpetas en el disco
-import { fileURLToPath } from 'url';  // fileURLToPath convierte la url del archivo actual (formato file://) en una ruta de archivo comun
+import { fileURLToPath } from 'url';  // fileURLToPath convierte la url del archivo actual (formato file:) en una ruta de archivo comun
 
 const __filename = fileURLToPath(import.meta.url); // import.meta.url da la url de este mismo archivo, la convertimos a ruta tradicional de archivo
 const __dirname = path.dirname(__filename);// path.dirname se queda solo con la carpeta que contiene este archivo, sin el nombre del archivo
