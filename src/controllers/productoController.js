@@ -43,7 +43,7 @@ const controladorProductos = {
 
     buscarPorId: async (req, res) =>{
         try {
-            const {id} = req.query; //destructuracion
+            const {id} = req.query;
             let productosDb = [];
 
             if (id){

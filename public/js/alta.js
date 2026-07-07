@@ -7,7 +7,7 @@ const form = document.getElementById('formularioProducto');
 
             const formData = new FormData(form);
 
-            // Cambiamos el texto del botón para que el usuario sepa que está cargando
+            // cambiamos el txt del boton para que el usuario sepa que se esta cargando
             btnGuardar.innerText = "Guardando...";
             btnGuardar.disabled = true;
 
@@ -25,7 +25,7 @@ const form = document.getElementById('formularioProducto');
                     mensajeDiv.innerText = "¡Producto guardado con éxito!";
                     form.reset(); // Limpiamos el formulario
                     
-                    // Opcional: Redirigir al dashboard después de 2 segundos
+                    // opcional redirigir al dashboard despues de 2 segundos
                     // setTimeout(() => {
                     //     window.location.href = '/admin/dashboard';
                     // }, 2000);
