@@ -30,14 +30,14 @@ const controladorProductos = {
             const { estado } = req.body;
 
             if (estado === undefined) {
-                return res.status(400).send('Falta el estado del producto');
+                return res.status(400).json({ success: false, message: 'Falta el estado del producto' });
             }
 
             await ProductosModelo.cambiarEstado(id, estado);
-            res.redirect('/admin/dashboard');
+            res.status(200).json({ success: true, message: 'Estado actualizado correctamente' });
         } catch (error) {
             console.log("Error al actualizar el estado: ", error);
-            res.status(500).send('Error al procesar la solicitud');
+            res.status(500).json({ success: false, message: 'Error al procesar la solicitud' });
         }
     },
 
@@ -97,8 +97,7 @@ const controladorProductos = {
                 categoria,
                 rutaImagen
             );
-
-            res.redirect('/admin/dashboard');
+            res.status(200).json({ success: true, message: 'Producto actualizado correctamente' });
         } catch (error) {
             console.error(error);
             res.status(500).json({
