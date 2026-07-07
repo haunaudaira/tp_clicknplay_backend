@@ -10,15 +10,12 @@
         .navbar a { color: white; text-decoration: none; margin-right: 15px; font-weight: bold; }
         .container { max-width: 800px; margin: 40px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         h1 { color: #333; }
-        .botonListado { margin: 10px; margin-top: 25px; display: flex; justify-content: flex-end; padding: 10px; }
-        .botonListado a {color: black; text-decoration: none;}
-    </style>
+   </style>
 </head>
 <body>
 
     <%- include('./partials/navegacion')%> <!-- llamado al navegador -->
 
-    <button class="botonListado" ><a href="/admin/ventas/excel">Listado de Ventas</a></button>
 
     <div class="container">
         <h1>Panel de Control</h1>
@@ -60,7 +57,7 @@
                             <%= producto.estado ? 'Activo' : 'Inactivo' %>
                         </td>
                         <td>
-                            <a href="/admin/productos/modificar/<%= producto.id %>">
+                            <a href="/productos/modificar/<%= producto.id %>">
                                 <button type="button">Editar</button>
                             </a>
                             <!-- <a href="/admin/productos/modificar/<%= producto.id %>">

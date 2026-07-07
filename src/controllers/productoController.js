@@ -110,13 +110,9 @@ const controladorProductos = {
 
     obtenerProductosClientes: async (req,res) =>{
         try {
-        // La consigna exige traer solo los productos activos (baja lógica)
-        const query = 'SELECT * FROM productos WHERE estado = 1';
-        
-        // Usamos la desestructuración de arrays que vimos en tu resumen para quedarnos con los datos
-        const [productos] = await db.execute(query);
-        
-        // El TP exige estrictamente responder en formato JSON válido
+
+        const productos = await ProductosModelo.mostrarActivos();
+
         res.json(productos); 
         } catch (error) {
             console.error("Error al obtener productos de la API:", error);

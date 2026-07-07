@@ -1,0 +1,60 @@
+/* estilos para modales de confirmacion */
+.modal-overlay {
+	display: none; /* se mostrara como flex cuando se active */
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.5);
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.modal-overlay[aria-hidden="false"] {
+	display: flex;
+}
+
+.modal {
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	max-width: 400px;
+	width: 90%;
+	text-align: center;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.modal-text {
+	margin-bottom: 20px;
+	color: #222;
+	font-size: 16px;
+}
+
+.modal-actions {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+}
+
+.btn-cancel,
+.btn-confirm {
+	border: none;
+	padding: 10px 15px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	min-width: 100px;
+}
+
+.btn-cancel {
+	background: #6c757d;
+	color: #fff;
+}
+
+.btn-confirm {
+	background: #dc3545;
+	color: #fff;
+}
+
+.btn-cancel:hover { opacity: 0.9; }
+.btn-confirm:hover { opacity: 0.9; }
+

@@ -45,6 +45,14 @@ const ProductosModelo = {
 
         const [resultado] = await db.execute(query, params);
         return resultado.affectedRows > 0;
+    },
+
+    mostrarActivos: async (id) => {
+        const query = 'SELECT * FROM productos WHERE estado = 1';
+
+        const [resultado] = await db.execute(query);
+
+        return resultado;
     }
 }
 

@@ -21,7 +21,7 @@ const VentaModelo = {
     }
     ,
     crearVenta: async ({ nombre_usuario = null, precio_total = 0, productos = [] }) => {
-        // Insertar la venta y luego sus productos relacionados
+        // insertar la venta y luego sus productos relacionados
         const insertVentaQuery = `INSERT INTO ventas (fecha, nombre_usuario, precio_total) VALUES (NOW(), ?, ?)`;
         const [result] = await db.execute(insertVentaQuery, [nombre_usuario, precio_total]);
         const idVenta = result.insertId;

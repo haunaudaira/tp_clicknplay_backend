@@ -12,10 +12,7 @@ const form = document.getElementById('formularioProducto');
             btnGuardar.disabled = true;
 
             try {
-                // Enviamos la petición POST al backend usando fetch
-                //  NO se le pone "Content-Type" a los headers cuando usas FormData,
-                // el navegador genera el "multipart/form-data" automáticamente.
-                const response = await fetch('/admin/productos/nuevo', {
+                const response = await fetch('/productos/nuevo', {
                     method: 'POST',
                     body: formData
                 });
@@ -41,7 +38,7 @@ const form = document.getElementById('formularioProducto');
                 mensajeDiv.style.color = "red";
                 mensajeDiv.innerText = "Hubo un error: " + error.message;
             } finally {
-                // Restauramos el botón
+                // restauramos el btn
                 btnGuardar.innerText = "Guardar Producto";
                 btnGuardar.disabled = false;
             }
